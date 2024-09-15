@@ -18,7 +18,6 @@ def update_database(google_data):
     The data should contain id, name, age, and last_updated timestamp.
     """
     for row in google_data:
-        print(f"Processing row: {row}")
         if len(row) == 4:  # Ensure the row has id, name, age, and last_updated timestamp
             google_id, google_name, google_age, google_timestamp = row
 
@@ -51,13 +50,3 @@ def sync_google_sheet_to_db():
     """
     google_data = fetch_data_from_google_sheet()
     update_database(google_data)
-    global last_update_time
-    last_update_time = time.time()  # Update the last update time
-
-def poll_google_sheets():
-    """
-    Continuously polls Google Sheets for updates every 10 seconds and syncs changes to MySQL.
-    """
-    while True:
-        sync_google_sheet_to_db()
-        time.sleep(10)  # Poll every 10 seconds

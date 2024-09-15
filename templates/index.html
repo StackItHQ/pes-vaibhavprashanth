@@ -64,9 +64,25 @@
             box-sizing: border-box; /* Ensures padding is included in the width */
         }
         .main-content {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            max-width: 1000px; /* Optional: Controls the maximum width */
             margin: 0 auto;
-            max-width: 800px; /* Optional: Controls the maximum width */
+        }
+        .main-content img {
+            max-width: 45%;
+            height: auto;
+        }
+        .text-content {
+            max-width: 50%;
+        }
+        .text-content h1 {
+            margin-top: 0;
+        }
+        .text-content p {
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -80,12 +96,30 @@
     </div>
 
     <div class="main-content">
-        <h1>Welcome to the Data Sync App</h1>
-        <img src="/static/img1_avatar.jpg" alt="Avatar" style="max-width: 50%; height: auto;">
-        <p>Synchronize data between Google Sheets and MySQL database with ease.</p>
-        <form action="/sync-data" method="post">
-            <button class="button" type="submit">Sync Data</button>
-        </form>
+        <div class="text-content">
+            <h1>Welcome to Superjoin Assignment made by Vaibhav</h1>
+            <p>Synchronize data between Google Sheets and MySQL database with ease.</p>
+            <button class="button" id="syncButton">Sync Data</button>
+            <p>Click Sync Data button to manually synchronize data or use the navigation bar to explore</p>
+        </div>
+        <img src="/static/img1_avatar.jpg" alt="Avatar">
     </div>
+
+    <script>
+        document.getElementById('syncButton').addEventListener('click', function() {
+            fetch('/sync-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.text())
+            .then(message => {
+                alert('Data synced between Google Sheets and MySQL');
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>

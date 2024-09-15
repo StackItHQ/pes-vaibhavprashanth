@@ -16,7 +16,6 @@ def home():
 # View Data Page
 @app.route('/view-data', methods=['GET'])
 def view_data():
-    # Fetch data from the MySQL database
     cursor.execute("SELECT id, name, age FROM table1")
     data = cursor.fetchall()
     return render_template('view_data.html', data=data)
@@ -24,7 +23,9 @@ def view_data():
 # Add Data Page
 @app.route('/add-data-page', methods=['GET'])
 def add_data_page():
-    return render_template('add_data.html')
+    cursor.execute("SELECT id, name, age FROM table1")
+    data = cursor.fetchall()
+    return render_template('add_data.html', data=data)
 
 # Add Data Functionality
 @app.route('/add-data', methods=['POST'])
@@ -33,7 +34,7 @@ def add_data():
     google_data = [data['id'], data['name'], data['age']]
     
     # Insert into SQL database
-    sql = "INSERT INTO table1 (id, name, age) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO table1 (id, name, age, last_updated) VALUES (%s, %s, %s, NOW())"
     cursor.execute(sql, (data['id'], data['name'], data['age']))
     db.commit()
     
@@ -60,7 +61,7 @@ def update_data():
     google_data = [data['id'], data['name'], data['age']]
     
     # Update SQL database
-    sql = "REPLACE INTO table1 (id, name, age) VALUES (%s, %s, %s)"
+    sql = "REPLACE INTO table1 (id, name, age, last_updated) VALUES (%s, %s, %s, NOW())"
     cursor.execute(sql, (data['id'], data['name'], data['age']))
     db.commit()
     
@@ -101,11 +102,11 @@ def delete_data():
     return jsonify({"status": "Data deleted successfully"}), 200
 
 # Sync Data between Google Sheets and MySQL
-@app.route('/sync-data', methods=['POST'])
+app.route('/sync-data', methods=['POST'])
 def sync_data():
     sync_google_sheet_to_db()
     sync_db_to_google_sheet()
-    return "Data synced between Google Sheets and MySQL"
+    return jsonify({"status": "Data synced between Google Sheets and MySQL"}), 200
 
 if __name__ == '__main__':
     threading.Thread(target=poll_database, daemon=True).start()
