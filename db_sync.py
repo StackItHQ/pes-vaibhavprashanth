@@ -67,4 +67,4 @@ def poll_database():
     """
     while True:
         sync_db_to_google_sheet()
-        time.sleep(10)  # Poll every 10 seconds
+        time.sleep(30)  # Poll every 10 seconds

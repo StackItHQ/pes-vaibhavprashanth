@@ -5,6 +5,7 @@ from db_sync import sync_db_to_google_sheet, fetch_data_from_db, poll_database
 import threading
 import mysql.connector
 from config import cursor, db, spreadsheet_id, credentials
+import logging
 
 app = Flask(__name__)
 
@@ -23,9 +24,7 @@ def view_data():
 # Add Data Page
 @app.route('/add-data-page', methods=['GET'])
 def add_data_page():
-    cursor.execute("SELECT id, name, age FROM table1")
-    data = cursor.fetchall()
-    return render_template('add_data.html', data=data)
+    return render_template('add_data.html')
 
 # Add Data Functionality
 @app.route('/add-data', methods=['POST'])
@@ -65,15 +64,8 @@ def update_data():
     cursor.execute(sql, (data['id'], data['name'], data['age']))
     db.commit()
     
-    # Update Google Sheets
-    service = build('sheets', 'v4', credentials=credentials)
-    body = {
-        'values': [google_data]
-    }
-    range_name = f"table1!A{data['id']}:C{data['id']}"  # Update specific row
-    service.spreadsheets().values().update(
-        spreadsheetId=spreadsheet_id, range=range_name,
-        valueInputOption="RAW", body=body).execute()
+    # Trigger sync to Google Sheets
+    sync_db_to_google_sheet()
     
     return jsonify({"status": "Data updated successfully"}), 200
 
@@ -102,11 +94,15 @@ def delete_data():
     return jsonify({"status": "Data deleted successfully"}), 200
 
 # Sync Data between Google Sheets and MySQL
-app.route('/sync-data', methods=['POST'])
+@app.route('/sync-data', methods=['POST'])
 def sync_data():
-    sync_google_sheet_to_db()
-    sync_db_to_google_sheet()
-    return jsonify({"status": "Data synced between Google Sheets and MySQL"}), 200
+    try:
+        sync_google_sheet_to_db()
+        sync_db_to_google_sheet()
+        return jsonify({"status": "Data synced between Google Sheets and MySQL"}), 200
+    except Exception as e:
+        logging.error(f"Error syncing data: {e}")
+        return jsonify({"status": "Error syncing data"}), 500
 
 if __name__ == '__main__':
     threading.Thread(target=poll_database, daemon=True).start()
