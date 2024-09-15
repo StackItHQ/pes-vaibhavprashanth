@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, render_template, jsonify
 from google_sync import sync_google_sheet_to_db, poll_google_sheets
 from db_sync import sync_db_to_google_sheet, poll_database
 import threading
@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Welcome to the Google Sheets - MySQL Sync App"
+    return render_template('index.html')
 
 @app.route('/sync-google-to-db', methods=['POST'])
 def sync_google_to_db():
