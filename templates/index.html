@@ -3,28 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Sheets - MySQL Sync App</title>
-    <style>
-        body {
-            background-color: #f7ead7;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        h1 {
-            margin-bottom: 20px;
-        }
-        img {
-            width: 500px;
-            height: 500px;
-        }
-    </style>
+    <title>Data Sync Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </head>
 <body>
-    <h1>Welcome to the Google Sheets - MySQL Sync App</h1>
-    <img src="/static/img1_avatar.jpg" alt="Avatar">
+    <div class="container">
+        <header>
+            <h1>Data Sync Dashboard</h1>
+        </header>
+
+        <section id="sync-section">
+            <button id="sync-data">Sync Data</button>
+        </section>
+
+        <section id="add-data-section">
+            <h2>Add New Data</h2>
+            <form id="add-data-form">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" required>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+                <button type="submit">Add Data</button>
+            </form>
+        </section>
+
+        <section id="update-data-section">
+            <h2>Update Data</h2>
+            <form id="update-data-form">
+                <label for="update-id">ID:</label>
+                <input type="text" id="update-id" name="id" required>
+                <label for="update-name">Name:</label>
+                <input type="text" id="update-name" name="name" required>
+                <label for="update-age">Age:</label>
+                <input type="number" id="update-age" name="age" required>
+                <button type="submit">Update Data</button>
+            </form>
+        </section>
+
+        <section id="delete-data-section">
+            <h2>Delete Data</h2>
+            <form id="delete-data-form">
+                <label for="delete-id">ID:</label>
+                <input type="text" id="delete-id" name="id" required>
+                <button type="submit">Delete Data</button>
+            </form>
+        </section>
+
+        <section id="data-table">
+            <h2>Data from MySQL and Google Sheets</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody id="data-body">
+                    <!-- Data will be populated here -->
+                </tbody>
+            </table>
+        </section>
+    </div>
 </body>
 </html>
