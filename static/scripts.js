@@ -1,86 +1,87 @@
-function fetchData() {
-    $.get('/data', function(data) {
-        $('#data-body').empty();  // Clear existing data
-        data.forEach(function(row) {
-            $('#data-body').append(
-                `<tr>
-                    <td>${row[0]}</td>
-                    <td>${row[1]}</td>
-                    <td>${row[2]}</td>
-                </tr>`
-            );
-        });
-    });
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle Add Data form submission
+    document.getElementById('add-data-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('id').value;
+        const name = document.getElementById('name').value;
+        const age = document.getElementById('age').value;
 
-$(document).ready(function() {
-    fetchData();  // Fetch data on page load
-
-    $('#sync-data').click(function() {
-        $.post('/sync-data', function() {
-            alert('Data synchronized between Google Sheets and MySQL');
-            fetchData();  // Refresh data after sync
-        });
-    });
-
-    $('#add-data-form').submit(function(event) {
-        event.preventDefault();
-        const id = $('#id').val();
-        const name = $('#name').val();
-        const age = $('#age').val();
-        $.ajax({
-            url: '/add-data',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({ id: id, name: name, age: age }),
-            success: function(response) {
-                alert('Data added successfully');
-                fetchData();  // Refresh data after addition
-                $('#add-data-form')[0].reset();  // Reset form fields
+        const response = await fetch('/add-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
-            error: function(xhr, status, error) {
-                alert('Error adding data');
-            }
+            body: JSON.stringify({ id, name, age }),
         });
+
+        const result = await response.json();
+        document.getElementById('response-message').textContent = result.status;
+        if (response.ok) {
+            document.getElementById('add-data-form').reset();
+        }
     });
 
-    $('#update-data-form').submit(function(event) {
-        event.preventDefault();
-        const id = $('#update-id').val();
-        const name = $('#update-name').val();
-        const age = $('#update-age').val();
-        $.ajax({
-            url: '/update-data',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({ id: id, name: name, age: age }),
-            success: function(response) {
-                alert('Data updated successfully');
-                fetchData();  // Refresh data after update
-                $('#update-data-form')[0].reset();  // Reset form fields
+    // Handle Update Data form submission
+    document.getElementById('update-data-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('update-id').value;
+        const name = document.getElementById('update-name').value;
+        const age = document.getElementById('update-age').value;
+
+        const response = await fetch('/update-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
-            error: function(xhr, status, error) {
-                alert('Error updating data');
-            }
+            body: JSON.stringify({ id, name, age }),
         });
+
+        const result = await response.json();
+        document.getElementById('response-message').textContent = result.status;
+        if (response.ok) {
+            document.getElementById('update-data-form').reset();
+        }
     });
 
-    $('#delete-data-form').submit(function(event) {
-        event.preventDefault();
-        const id = $('#delete-id').val();
-        $.ajax({
-            url: '/delete-data',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({ id: id }),
-            success: function(response) {
-                alert('Data deleted successfully');
-                fetchData();  // Refresh data after deletion
-                $('#delete-data-form')[0].reset();  // Reset form fields
+    // Handle Delete Data form submission
+    document.getElementById('delete-data-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('delete-id').value;
+
+        const response = await fetch('/delete-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
-            error: function(xhr, status, error) {
-                alert('Error deleting data');
-            }
+            body: JSON.stringify({ id }),
         });
+
+        const result = await response.json();
+        document.getElementById('response-message').textContent = result.status;
+        if (response.ok) {
+            document.getElementById('delete-data-form').reset();
+        }
     });
+
+    // Fetch and display data on View Data page
+    if (window.location.pathname === '/view-data') {
+        fetchData();
+    }
+
+    async function fetchData() {
+        const response = await fetch('/data');
+        const data = await response.json();
+        const tableBody = document.querySelector('#data-table tbody');
+        tableBody.innerHTML = '';  // Clear existing rows
+
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            row.forEach(cell => {
+                const td = document.createElement('td');
+                td.textContent = cell;
+                tr.appendChild(td);
+            });
+            tableBody.appendChild(tr);
+        });
+    }
 });

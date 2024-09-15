@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Sync App</title>
+    <title>View Data</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         body {
             background-color: #f7ead7;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
         }
         .navbar {
             background-color: #333;
@@ -30,7 +28,6 @@
         }
         .container {
             padding: 20px;
-            text-align: center;
         }
         table {
             width: 100%;
@@ -52,21 +49,13 @@
             background-color: #4CAF50;
             border: none;
             color: white;
-            padding: 10px 20px; /* Adjust padding */
+            padding: 15px 32px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
             margin: 4px 2px;
             cursor: pointer;
-            border-radius: 5px; /* Optional: Adds rounded corners */
-            width: 150px; /* Set a fixed width for the button */
-            box-sizing: border-box; /* Ensures padding is included in the width */
-        }
-        .main-content {
-            text-align: center;
-            margin: 0 auto;
-            max-width: 800px; /* Optional: Controls the maximum width */
         }
     </style>
 </head>
@@ -79,13 +68,31 @@
         <a href="{{ url_for('delete_data_page') }}">Delete Data</a>
     </div>
 
-    <div class="main-content">
-        <h1>Welcome to the Data Sync App</h1>
-        <img src="/static/img1_avatar.jpg" alt="Avatar" style="max-width: 50%; height: auto;">
-        <p>Synchronize data between Google Sheets and MySQL database with ease.</p>
-        <form action="/sync-data" method="post">
-            <button class="button" type="submit">Sync Data</button>
-        </form>
+    <div class="container">
+        <h1>Data from MySQL Database</h1>
+
+        {% if data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No data available</p>
+        {% endif %}
     </div>
 </body>
 </html>
