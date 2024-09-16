@@ -97,4 +97,4 @@ Please find video in static -> Superjoin_Vaibhav_Final.mp4 or click [here](https
 ### Conclusion
 I had a lot of fun doing this assignment and learnt a lot. I would love to be a part of your team and work with Superjoin. 
 If any questions feel free to shoot me an email at vaibhavprashanth2002@gmail.com. Thank You!
-![Hire ME](https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/img1_avatar.jpg = 250x250)
+![Hire ME](https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/img1_avatar.jpg)
