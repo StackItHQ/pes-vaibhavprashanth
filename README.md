@@ -73,7 +73,7 @@ All the best ✨.
 - Google API Client: For communicating with Google Sheets.
 
 ### Architecture
-![Architecture](https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/Architecture_nobg_darkmode.png?)
+![Architecture](https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/Arcitecture_nobg_darkmode.png)
 
 This system follows a bi-directional polling and synchronization model:
 1. Database to Google Sheets Sync:
