@@ -73,7 +73,7 @@ All the best ✨.
 - Google API Client: For communicating with Google Sheets.
 
 ### Architecture
-![alt text]([https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true](https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/Architecture.png))
+![Architecture](https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/Architecture.png?)
 This system follows a bi-directional polling and synchronization model:
 1. Database to Google Sheets Sync:
 - The system polls the MySQL database at regular intervals (every 20 seconds).
