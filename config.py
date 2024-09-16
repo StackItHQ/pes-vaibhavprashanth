@@ -13,7 +13,7 @@ spreadsheet_id = '1PxsBTwIDxCTX1ko6UGyreZeidQIwALAeM2HJ_5coxds'
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="va1bhav.p",
+    password="retracted",
     database="Superjoin_Assignment"
 )
 cursor = db.cursor()
