@@ -108,3 +108,4 @@ if __name__ == '__main__':
     threading.Thread(target=poll_database, daemon=True).start()
     threading.Thread(target=poll_google_sheets, daemon=True).start()
     app.run(port=5000)
+    
