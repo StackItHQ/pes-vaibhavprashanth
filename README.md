@@ -101,4 +101,4 @@ If any questions feel free to shoot me an email at vaibhavprashanth2002@gmail.co
 - SRN: PES1UG21CS399
 - Phone: 9148488780
 - Email: vaibhavprashanth2002@gmail.com
-<img src="https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/img1_avatar.jpg" alt="HIRE ME" style="width:700px;height:700px;">
+<img src="https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/img1_avatar.jpg" alt="HIRE ME" style="width:600px;height:600px;">
