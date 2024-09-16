@@ -1,0 +1,23 @@
+create database superjoin_assignment;
+use superjoin_assignment;
+
+create table table1 ( id INT PRIMARY KEY, name VARCHAR(50), age INT);
+
+CREATE TABLE change_log (id INT AUTO_INCREMENT PRIMARY KEY, table_name VARCHAR(255), operation VARCHAR(10), record_id INT, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+
+CREATE TRIGGER after_insert
+AFTER INSERT ON table1
+FOR EACH ROW
+INSERT INTO change_log (table_name, operation, record_id) VALUES ('table1', 'INSERT', NEW.id);
+
+CREATE TRIGGER after_update
+AFTER UPDATE ON table1
+FOR EACH ROW
+INSERT INTO change_log (table_name, operation, record_id) VALUES ('table1', 'UPDATE', NEW.id);
+
+CREATE TRIGGER after_delete
+AFTER DELETE ON table1
+FOR EACH ROW
+INSERT INTO change_log (table_name, operation, record_id) VALUES ('table1', 'DELETE', OLD.id);
+
+ALTER TABLE table1 ADD COLUMN last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;

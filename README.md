@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/AHFn7Vbn)
 # Superjoin Hiring Assignment
 
 ### Welcome to Superjoin's hiring assignment! 🚀
@@ -44,11 +45,11 @@ Once you're done, make sure you **record a video** showing your project working.
 
 We have a checklist at the bottom of this README file, which you should update as your progress with your assignment. It will help us evaluate your project.
 
-- [ ] My code's working just fine! 🥳
-- [ ] I have recorded a video showing it working and embedded it in the README ▶️
-- [ ] I have tested all the normal working cases 😎
-- [ ] I have even solved some edge cases (brownie points) 💪
-- [ ] I added my very planned-out approach to the problem at the end of this README 📜
+- [x] My code's working just fine! 🥳
+- [x] I have recorded a video showing it working and embedded it in the README ▶️
+- [x] I have tested all the normal working cases 😎
+- [x] I have even solved some edge cases (brownie points) 💪
+- [x] I added my very planned-out approach to the problem at the end of this README 📜
 
 ## Got Questions❓
 Feel free to check the discussions tab, you might get some help there. Check out that tab before reaching out to us. Also, did you know, the internet is a great place to explore? 😛
@@ -58,4 +59,46 @@ We're available at techhiring@superjoin.ai for all queries.
 All the best ✨.
 
 ## Developer's Section
-*Add your video here, and your approach to the problem (optional). Leave some comments for us here if you want, we will be reading this :)*
+### Features 💻
+- Automated Bi-directional Sync: Changes in the MySQL database or Google Sheets are automatically detected and reflected in the other platform every 10 seconds.
+- CRUD Functionality: Easily add, update, and delete records from either platform. Changes are instantly synchronized.
+- Manual Sync Option: A manual sync button is available to trigger synchronization on demand.
+- Conflict Handling: The system uses a last-write-wins strategy to resolve any conflicts.
+
+### Technologies Used ⚙️
+- Flask: Backend web framework for creating APIs and handling CRUD operations.
+- Google Sheets API: To interact with Google Sheets, fetch and update data.
+- MySQL: For robust data storage and retrieval.
+- Python threading: To enable continuous polling for real-time synchronization.
+- Google API Client: For communicating with Google Sheets.
+
+### Architecture 🔧
+![Architecture](https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/Arcitecture_nobg_darkmode.png)
+
+This system follows a bi-directional polling and synchronization model:
+1. Database to Google Sheets Sync:
+- The system polls the MySQL database at regular intervals (every 10 seconds).
+- If there are any new updates, inserts, or deletions in the database, those changes are pushed to Google Sheets.
+2. Google Sheets to Database Sync:
+- Similarly, the system polls the Google Sheets at regular intervals.
+- Any new data or modifications are updated in the MySQL database.
+3. Manual Sync:
+- In addition to automated sync, users can trigger synchronization manually via a "Sync Data" button on the web interface.
+
+### Conflict Handling 📊
+In case of simultaneous updates in both Google Sheets and MySQL, the system resolves conflicts using a last-write-wins approach. The more recent change (based on the last_updated timestamp) is applied across both platforms. You can enhance this by adding more complex conflict resolution logic, such as user-defined rules.
+
+### Scalability and Performance 📈
+The polling interval for synchronization is set to 10 seconds by default. You can modify this interval depending on your requirements for more frequent or less frequent sync.
+
+### Video 🎥
+Please find video in static -> Superjoin_Vaibhav_Final.mp4 or watch it on [google drive](https://drive.google.com/file/d/16cOXxEh-Dn5tfluttThflr_7MJ8GH2R1/view?usp=sharing)
+
+### Conclusion
+I had a lot of fun doing this assignment and learnt a lot. I would love to be a part of your team and work with Superjoin. 
+If any questions feel free to shoot me an email at vaibhavprashanth2002@gmail.com. Thank You!
+- Name: Vaibhav Prashanth
+- SRN: PES1UG21CS399
+- Phone: 9148488780
+- Email: vaibhavprashanth2002@gmail.com
+<img src="https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/img1_avatar.jpg" alt="HIRE ME" style="width:600px;height:600px;">
