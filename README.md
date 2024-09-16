@@ -89,9 +89,7 @@ This system follows a bi-directional polling and synchronization model:
 In case of simultaneous updates in both Google Sheets and MySQL, the system resolves conflicts using a last-write-wins approach. The more recent change (based on the last_updated timestamp) is applied across both platforms. You can enhance this by adding more complex conflict resolution logic, such as user-defined rules.
 
 ### Scalability and Performance
-- The polling interval for synchronization is set to 20 seconds by default. You can modify this interval depending on your requirements for more frequent or less frequent sync.
-- For handling larger datasets, consider optimizing database queries and using batch processing for updates to Google Sheets.
+The polling interval for synchronization is set to 20 seconds by default. You can modify this interval depending on your requirements for more frequent or less frequent sync.
 
-
-
-
+### Video
+![Video](https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/Vaibhav_Superjoin_Video.mp4)
