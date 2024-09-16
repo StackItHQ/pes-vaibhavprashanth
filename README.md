@@ -93,6 +93,7 @@ The polling interval for synchronization is set to 10 seconds by default. You ca
 
 ### Video 🎥
 Please find video in static -> Superjoin_Vaibhav_Final.mp4 or click [here](https://github.com/StackItHQ/pes-vaibhavprashanth/blob/main/static/Superjoin_Vaibhav_Final.mp4)
+
 Or Watch it on [google drive](https://drive.google.com/file/d/16cOXxEh-Dn5tfluttThflr_7MJ8GH2R1/view?usp=sharing)
 
 ### Conclusion
