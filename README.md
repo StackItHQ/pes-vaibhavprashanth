@@ -59,4 +59,9 @@ We're available at techhiring@superjoin.ai for all queries.
 All the best ✨.
 
 ## Developer's Section
-*Add your video here, and your approach to the problem (optional). Leave some comments for us here if you want, we will be reading this :)*
+Features
+- Automated Bi-directional Sync: Changes in the MySQL database or Google Sheets are automatically detected and reflected in the other platform every 20 seconds.
+- CRUD Functionality: Easily add, update, and delete records from either platform. Changes are instantly synchronized.
+- Manual Sync Option: A manual sync button is available to trigger synchronization on demand.
+- Conflict Handling: The system uses a last-write-wins strategy to resolve any conflicts (optional feature, can be enhanced for user-defined conflict resolution).
+
