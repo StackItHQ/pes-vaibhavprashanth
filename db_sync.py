@@ -63,8 +63,8 @@ def sync_db_to_google_sheet():
 
 def poll_database():
     """
-    Poll the MySQL database for changes every 20 seconds and sync them with Google Sheets.
+    Poll the MySQL database for changes every 10 seconds and sync them with Google Sheets.
     """
     while True:
         sync_db_to_google_sheet()
-        time.sleep(20)  # Poll every 20 seconds
+        time.sleep(10)  # Poll every 10 seconds

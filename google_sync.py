@@ -55,8 +55,8 @@ def sync_google_sheet_to_db():
 
 def poll_google_sheets():
     """
-    Continuously polls Google Sheets for updates every 20 seconds and syncs changes to MySQL.
+    Continuously polls Google Sheets for updates every 10 seconds and syncs changes to MySQL.
     """
     while True:
         sync_google_sheet_to_db()
-        time.sleep(20)  # Poll every 20 seconds
+        time.sleep(10)  # Poll every 10 seconds
