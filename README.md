@@ -59,9 +59,37 @@ We're available at techhiring@superjoin.ai for all queries.
 All the best ✨.
 
 ## Developer's Section
-# Features
+### Features
 - Automated Bi-directional Sync: Changes in the MySQL database or Google Sheets are automatically detected and reflected in the other platform every 20 seconds.
 - CRUD Functionality: Easily add, update, and delete records from either platform. Changes are instantly synchronized.
 - Manual Sync Option: A manual sync button is available to trigger synchronization on demand.
 - Conflict Handling: The system uses a last-write-wins strategy to resolve any conflicts (optional feature, can be enhanced for user-defined conflict resolution).
+
+### Technologies Used
+- Flask: Backend web framework for creating APIs and handling CRUD operations.
+- Google Sheets API: To interact with Google Sheets, fetch and update data.
+- MySQL: For robust data storage and retrieval.
+- Python threading: To enable continuous polling for real-time synchronization.
+- Google API Client: For communicating with Google Sheets.
+
+### System Architecture
+This system follows a bi-directional polling and synchronization model:
+1. Database to Google Sheets Sync:
+- The system polls the MySQL database at regular intervals (every 20 seconds).
+- If there are any new updates, inserts, or deletions in the database, those changes are pushed to Google Sheets.
+2. Google Sheets to Database Sync:
+- Similarly, the system polls the Google Sheets at regular intervals.
+- Any new data or modifications are updated in the MySQL database.
+3. Manual Sync:
+- In addition to automated sync, users can trigger synchronization manually via a "Sync Data" button on the web interface.
+
+### Conflict Handling
+In case of simultaneous updates in both Google Sheets and MySQL, the system resolves conflicts using a last-write-wins approach. The more recent change (based on the last_updated timestamp) is applied across both platforms. You can enhance this by adding more complex conflict resolution logic, such as user-defined rules.
+
+### Scalability and Performance
+- The polling interval for synchronization is set to 20 seconds by default. You can modify this interval depending on your requirements for more frequent or less frequent sync.
+- For handling larger datasets, consider optimizing database queries and using batch processing for updates to Google Sheets.
+
+
+
 
