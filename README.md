@@ -60,7 +60,7 @@ All the best ✨.
 
 ## Developer's Section
 ### Features 💻
-- Automated Bi-directional Sync: Changes in the MySQL database or Google Sheets are automatically detected and reflected in the other platform every 20 seconds.
+- Automated Bi-directional Sync: Changes in the MySQL database or Google Sheets are automatically detected and reflected in the other platform every 10 seconds.
 - CRUD Functionality: Easily add, update, and delete records from either platform. Changes are instantly synchronized.
 - Manual Sync Option: A manual sync button is available to trigger synchronization on demand.
 - Conflict Handling: The system uses a last-write-wins strategy to resolve any conflicts.
@@ -77,7 +77,7 @@ All the best ✨.
 
 This system follows a bi-directional polling and synchronization model:
 1. Database to Google Sheets Sync:
-- The system polls the MySQL database at regular intervals (every 20 seconds).
+- The system polls the MySQL database at regular intervals (every 10 seconds).
 - If there are any new updates, inserts, or deletions in the database, those changes are pushed to Google Sheets.
 2. Google Sheets to Database Sync:
 - Similarly, the system polls the Google Sheets at regular intervals.
